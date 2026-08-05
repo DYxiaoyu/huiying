@@ -66,14 +66,17 @@
     }
 
     .nav-logo-icon {
-      width: 28px;
-      height: 28px;
-      background: var(--强调色-金黄);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
+      width: 32px;
+      height: 32px;
+      /* 用 PNG 图片，保持原始宽高比，不变形 */
+      background: transparent;
+      background-image: url('logo.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      border-radius: 0;
+      display: block;
+      flex-shrink: 0;
     }
 
     .nav-links {
@@ -144,20 +147,53 @@
       margin-bottom: 20px;
     }
 
+    /* ✏️ 修改：品牌大标题（与 logo 一起展示） */
+    .hero-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .hero-logo {
+      width: 100px;
+      height: 100px;
+      background-image: url('logo.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;       /* 保持原图比例，不变形 */
+      flex-shrink: 0;
+      /* logo 周围加一圈柔光，让它在深色背景上更突出 */
+      filter: drop-shadow(0 6px 32px rgba(255, 184, 0, 0.6))
+              drop-shadow(0 0 20px rgba(255, 255, 255, 0.4))
+              drop-shadow(0 0 40px rgba(255, 184, 0, 0.3));
+    }
+
     .hero-title {
-      font-size: 48px;
+      font-size: 72px;
       font-weight: 900;
       letter-spacing: 8px;
-      margin-bottom: 14px;
-      /* 文字发光效果 */
-      text-shadow: 0 0 40px rgba(255,184,0,0.3);
+      line-height: 1;
+      margin: 0;
+      /* 标题：白→金 的渐变，更有质感 */
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFE0A0 40%, #FFCC00 70%, #FFB800 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      text-shadow: none;
+      /* 轻微描边增加可读性 */
+      -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
     }
 
     .hero-subtitle {
-      font-size: 15px;
-      color: var(--文字-灰色);
+      font-size: 22px;
+      color: rgba(255, 255, 255, 0.9);
       margin-bottom: 50px;
-      letter-spacing: 2px;
+      letter-spacing: 4px;
+      font-weight: 500;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     /* 三个数据卡片 */
@@ -532,9 +568,16 @@
        （已经在 max-width 里做了移动端优先）
     ============================================ */
     @media (max-width: 400px) {
+      .hero-logo {
+        width: 60px;
+        height: 60px;
+      }
       .hero-title {
-        font-size: 38px;
-        letter-spacing: 4px;
+        font-size: 36px;
+        letter-spacing: 3px;
+      }
+      .hero-brand {
+        gap: 10px;
       }
       .nav-links li a {
         font-size: 11px;
@@ -548,12 +591,12 @@
   <!-- 🧭 导航栏 -->
   <nav class="navbar">
     <div class="nav-logo">
-      <div class="nav-logo-icon">🏢</div>
+      <div class="nav-logo-icon"></div>
       <span>汇盈</span>
     </div>
     <ul class="nav-links">
       <li><a href="#hero" class="active">首页</a></li>
-      <li><a href="#about">关于我们</a></li>
+      <li><a href="about.html">关于我们</a></li>
       <li><a href="#infra">基础设施</a></li>
       <li><a href="#coop">合作邀请</a></li>
       <li><a href="#contact">联系我们</a></li>
@@ -573,11 +616,14 @@
       ⚡ 专注中俄贸易 · 连接优质供应链
     </div>
 
-    <!-- ✏️ 修改：品牌名称 -->
-    <h1 class="hero-title">汇盈聚金</h1>
+    <!-- ✏️ 修改：品牌名称（logo + 大标题） -->
+    <div class="hero-brand">
+      <div class="hero-logo" aria-label="汇盈聚金 logo"></div>
+      <h1 class="hero-title">汇盈聚金</h1>
+    </div>
 
     <!-- ✏️ 修改：副标题 -->
-    <p class="hero-subtitle">专注中俄贸易 · 连接优质供应链</p>
+    <p class="hero-subtitle">中国·俄罗斯双基地 为您打通跨境全链路</p>
 
     <!-- ✏️ 修改：三个数据（数字 + 说明文字）-->
     <div class="hero-stats">
@@ -746,17 +792,17 @@
       <!-- ✏️ 修改：联系方式 -->
       <div class="contact-card">
         <div class="contact-card-label">📞 电话</div>
-        <div class="contact-card-value">400-XXX-XXXX</div>
+        <div class="contact-card-value">15250694693</div>
       </div>
 
       <div class="contact-card">
         <div class="contact-card-label">📧 邮箱</div>
-        <div class="contact-card-value">contact@huiying.com</div>
+        <div class="contact-card-value">zhanglu@hyjjglobal.com</div>
       </div>
 
       <div class="contact-card">
         <div class="contact-card-label">📍 地址</div>
-        <div class="contact-card-value">山东省青岛市 · 俄罗斯莫斯科</div>
+        <div class="contact-card-value">江苏省南通市崇川区文峰街道崇川路88号国际贸易中心3606</div>
       </div>
     </div>
 
