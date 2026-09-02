@@ -11,7 +11,7 @@
        修改一处全局生效，方便小白定制。
     ============================================ */
 
-    :root {
+      :root {
       --主色-深蓝: #1A237E;
       --主色-蓝: #3B4DC8;
       --主色-渐变中心: #4A5BD8;
@@ -33,16 +33,26 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-      background: var(--主色-深蓝);
+      background: #070b30;
       color: var(--文字-白色);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ============================================
-       🧭 顶部导航栏
-       改法：改 logo 文字、改链接文字
-    ============================================ */
+    .hero,
+    .contact-section {
+      background-image: url('bg-hero.png');
+      background-size: cover;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    section, footer {
+      position: relative;
+      z-index: 1;
+    }
+
     .navbar {
       position: fixed;
       top: 0;
@@ -68,7 +78,6 @@
     .nav-logo-icon {
       width: 32px;
       height: 32px;
-      /* 用 PNG 图片，保持原始宽高比，不变形 */
       background: transparent;
       background-image: url('logo.png');
       background-repeat: no-repeat;
@@ -93,22 +102,22 @@
       border-radius: 20px;
       transition: all 0.3s;
       white-space: nowrap;
+      /* =========新增文字阴影========= */
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
 
     .nav-links li a.active {
       background: rgba(255,255,255,0.15);
       color: var(--文字-白色);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.7);
     }
 
     .nav-links li a:hover {
       background: rgba(255,255,255,0.1);
       color: var(--文字-白色);
+      text-shadow: 0 1px 4px rgba(0,0,0,0.7);
     }
 
-    /* ============================================
-       🎯 第一屏：英雄区（Hero）
-       改法：改标题、改副标题、改数字、改按钮文字
-    ============================================ */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -117,12 +126,10 @@
       justify-content: center;
       text-align: center;
       padding: 80px 24px 60px;
-      background: radial-gradient(ellipse at 50% 40%, var(--主色-渐变中心), var(--主色-蓝), var(--主色-深蓝) 70%);
       position: relative;
       overflow: hidden;
     }
 
-    /* 背景装饰圆 */
     .hero::before {
       content: '';
       position: absolute;
@@ -145,9 +152,10 @@
       font-size: 12px;
       color: var(--文字-灰色);
       margin-bottom: 20px;
+      /* =========新增文字阴影========= */
+      text-shadow: 0 1px 3px rgba(0,0,0,0.55);
     }
 
-    /* ✏️ 修改：品牌大标题（与 logo 一起展示） */
     .hero-brand {
       display: flex;
       align-items: center;
@@ -162,9 +170,8 @@
       background-image: url('logo.png');
       background-repeat: no-repeat;
       background-position: center;
-      background-size: contain;       /* 保持原图比例，不变形 */
+      background-size: contain;
       flex-shrink: 0;
-      /* logo 周围加一圈柔光，让它在深色背景上更突出 */
       filter: drop-shadow(0 6px 32px rgba(255, 184, 0, 0.6))
               drop-shadow(0 0 20px rgba(255, 255, 255, 0.4))
               drop-shadow(0 0 40px rgba(255, 184, 0, 0.3));
@@ -176,14 +183,12 @@
       letter-spacing: 8px;
       line-height: 1;
       margin: 0;
-      /* 标题：白→金 的渐变，更有质感 */
       background: linear-gradient(180deg, #FFFFFF 0%, #FFE0A0 40%, #FFCC00 70%, #FFB800 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
       text-shadow: none;
-      /* 轻微描边增加可读性 */
       -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
     }
 
@@ -196,7 +201,6 @@
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
-    /* 三个数据卡片 */
     .hero-stats {
       display: flex;
       gap: 16px;
@@ -218,15 +222,17 @@
       font-weight: 900;
       color: var(--强调色-金黄);
       margin-bottom: 4px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
 
     .stat-label {
-      font-size: 10px;
+      font-size: 14px;
       color: var(--文字-灰色);
       line-height: 1.4;
+      /* =========新增文字阴影========= */
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
 
-    /* CTA 按钮 */
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -254,7 +260,6 @@
       box-shadow: 0 6px 30px rgba(255,168,0,0.55);
     }
 
-    /* 底部波浪分隔线 */
     .wave-divider {
       position: absolute;
       bottom: 0;
@@ -268,10 +273,6 @@
       height: 50px;
     }
 
-    /* ============================================
-       📋 第二屏：基础设施
-       改法：改卡片标题、改列表内容、改图标（emoji）
-    ============================================ */
     .section {
       background: var(--浅紫背景);
       padding: 60px 20px;
@@ -296,7 +297,6 @@
       margin-bottom: 36px;
     }
 
-    /* 2×2 网格卡片 */
     .card-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -353,10 +353,6 @@
       margin-top: 1px;
     }
 
-    /* ============================================
-       🤝 第三屏：合作邀请
-       改法：改标题、改供应商类型、改流程步骤
-    ============================================ */
     .cooperation-section {
       background: var(--浅紫背景);
       padding: 60px 20px;
@@ -382,7 +378,6 @@
       gap: 24px;
     }
 
-    /* 供应商类型卡片 */
     .supplier-card {
       background: var(--卡片-白色);
       border-radius: 16px;
@@ -432,7 +427,6 @@
       line-height: 1.4;
     }
 
-    /* 合作流程步骤 */
     .flow-card {
       background: var(--卡片-白色);
       border-radius: 16px;
@@ -481,7 +475,6 @@
       padding-top: 5px;
     }
 
-    /* 提交按钮 */
     .btn-secondary {
       display: flex;
       align-items: center;
@@ -506,12 +499,7 @@
       background: #0d1450;
     }
 
-    /* ============================================
-       📞 第四屏：联系我们
-       改法：改联系方式文字、改地址
-    ============================================ */
     .contact-section {
-      background: var(--主色-深蓝);
       padding: 60px 20px;
       text-align: center;
       color: white;
@@ -519,6 +507,7 @@
 
     .contact-section .section-title {
       color: white;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
     .contact-cards {
@@ -544,29 +533,28 @@
       margin-bottom: 4px;
       text-transform: uppercase;
       letter-spacing: 1px;
+      /* =========新增文字阴影========= */
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
     }
 
     .contact-card-value {
       font-size: 15px;
       color: white;
       font-weight: 500;
+      /* =========新增文字阴影========= */
+      text-shadow: 0 1px 4px rgba(0,0,0,0.75);
     }
 
-    /* ============================================
-       🦶 底部栏
-    ============================================ */
     .footer {
       background: #0d1450;
       padding: 20px;
       text-align: center;
       font-size: 11px;
       color: rgba(255,255,255,0.4);
+      /* =========新增文字阴影========= */
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
 
-    /* ============================================
-       📱 手机适配
-       （已经在 max-width 里做了移动端优先）
-    ============================================ */
     @media (max-width: 400px) {
       .hero-logo {
         width: 60px;
@@ -584,9 +572,11 @@
         padding: 5px 7px;
       }
     }
+
   </style>
 </head>
 <body>
+
 
   <!-- 🧭 导航栏 -->
   <nav class="navbar">
@@ -603,14 +593,6 @@
     </ul>
   </nav>
 
-  <!-- ============================================
-       🎯 第一屏：英雄区（Hero）
-       📝 改这里的内容：
-         - 品牌名称：大标题
-         - 副标题文字
-         - 三个数字和说明
-         - 按钮文字
-  ============================================ -->
   <section class="hero" id="hero">
     <div class="hero-eyebrow">
       ⚡ 专注中俄贸易 · 连接优质供应链
@@ -623,7 +605,7 @@
     </div>
 
     <!-- ✏️ 修改：副标题 -->
-    <p class="hero-subtitle">中国·俄罗斯双基地 为您打通跨境全链路</p>
+    <p class="hero-subtitle">中国·俄罗斯双基地 为您打通外贸跨境全链路</p>
 
     <!-- ✏️ 修改：三个数据（数字 + 说明文字）-->
     <div class="hero-stats">
@@ -654,13 +636,6 @@
     </div>
   </section>
 
-  <!-- ============================================
-       📋 第二屏：基础设施（关于我们）
-       📝 改这里的内容：
-         - 每个卡片的标题
-         - 每个卡片的列表项
-         - 每个卡片的图标（emoji）
-  ============================================ -->
   <section class="section" id="infra">
     <h2 class="section-title">基础设施</h2>
     <p class="section-subtitle">平台资源 · 仓储物流 · 运营团队 · 推广资源</p>
@@ -716,13 +691,6 @@
     </div>
   </section>
 
-  <!-- ============================================
-       🤝 第三屏：合作邀请
-       📝 改这里的内容：
-         - 供应商类型（图标、标题、说明）
-         - 合作流程（步骤内容）
-         - 按钮文字
-  ============================================ -->
   <section class="cooperation-section" id="coop">
     <div class="coop-title">
       🤝 合作邀请
@@ -780,11 +748,6 @@
     </a>
   </section>
 
-  <!-- ============================================
-       📞 第四屏：联系我们
-       📝 改这里的内容：
-         - 联系方式（电话、邮箱、地址）
-  ============================================ -->
   <section class="contact-section" id="contact">
     <h2 class="section-title" style="margin-bottom:30px;">联系我们</h2>
 
@@ -792,7 +755,7 @@
       <!-- ✏️ 修改：联系方式 -->
       <div class="contact-card">
         <div class="contact-card-label">📞 电话</div>
-        <div class="contact-card-value">15250694693</div>
+        <div class="contact-card-value">+86 15250694693</div>
       </div>
 
       <div class="contact-card">
@@ -816,10 +779,6 @@
     <p>© 2024 汇盈聚金 Huiying Jijin. All rights reserved.</p>
   </footer>
 
-  <!-- ============================================
-       🔧 脚本：平滑滚动 + 当前导航高亮
-       小白一般不需要改这里
-  ============================================ -->
   <script>
     // 点击导航链接时平滑滚动
     document.querySelectorAll('a[href^="#"]').forEach(function(link) {
@@ -853,6 +812,7 @@
       });
     });
   </script>
+
 
 </body>
 </html>
