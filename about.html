@@ -6,7 +6,7 @@
   <title>关于我们 - 汇盈聚金</title>
   <style>
     :root {
-      --主色-深蓝: #1A237E;
+      --主色-深蓝: #071F3B; /* 全站主体深蓝（与首页背景一致） */
       --主色-蓝: #3B4DC8;
       --主色-渐变中心: #4A5BD8;
       --强调色-金黄: #FFB800;
@@ -27,10 +27,20 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-      background: var(--浅紫背景);
-      color: var(--文字-深灰);
+      background: var(--主色-深蓝);
+      color: rgba(255,255,255,0.82);
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* ============================================
+       ✨ 线性图标（SVG）通用样式
+       图标大小自动跟随所在位置的文字大小
+    ============================================ */
+    .icon {
+      width: 1em;
+      height: 1em;
+      flex-shrink: 0;
     }
 
     /* ============================================
@@ -43,7 +53,7 @@
       left: 0;
       right: 0;
       z-index: 100;
-      background: var(--主色-深蓝);
+      background: #071F3B; /* 与首页背景一致的深蓝 */
       padding: 12px 20px;
       display: flex;
       align-items: center;
@@ -87,6 +97,7 @@
       border-radius: 20px;
       transition: all 0.3s;
       white-space: nowrap;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
 
     .nav-links li a.active {
@@ -101,7 +112,7 @@
 
     /* 页面标题区 */
     .page-header {
-      background: linear-gradient(180deg, var(--主色-渐变中心), var(--主色-深蓝));
+      background: linear-gradient(180deg, #123A66 0%, #071F3B 100%);
       padding: 120px 20px 60px;
       text-align: center;
       color: white;
@@ -131,34 +142,52 @@
       margin: 0 auto;
     }
 
-    /* 区块样式 */
+    /* 区块样式（深色玻璃卡片） */
     .section-block {
-      background: var(--卡片-白色);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 20px;
       padding: 28px 24px;
       margin-bottom: 20px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
     .section-block h2 {
       font-size: 22px;
       font-weight: 900;
-      color: var(--主色-深蓝);
+      color: #FFFFFF;
       margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 10px;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
     }
 
+    /* 标题图标：金色线性图标 + 金色光晕圆角底 */
     .section-block h2 .icon {
-      font-size: 24px;
+      width: 28px;
+      height: 28px;
+      padding: 6px;
+      box-sizing: border-box;
+      border-radius: 9px;
+      background: linear-gradient(135deg, rgba(255,184,0,0.22), rgba(255,184,0,0.05));
+      border: 1px solid rgba(255,184,0,0.35);
+      color: #FFB800;
+      box-shadow: 0 0 14px rgba(255,184,0,0.15);
     }
 
     .section-block p {
       font-size: 14px;
       line-height: 1.8;
-      color: var(--文字-深灰);
+      color: rgba(255,255,255,0.78);
       margin-bottom: 12px;
+    }
+
+    .section-block p strong {
+      color: #FFD25E;
+      font-weight: 700;
     }
 
     /* 数据卡片 */
@@ -170,7 +199,8 @@
     }
 
     .stat-card {
-      background: var(--浅紫背景);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 14px;
       padding: 18px;
       text-align: center;
@@ -179,13 +209,14 @@
     .stat-card .number {
       font-size: 28px;
       font-weight: 900;
-      color: var(--主色-深蓝);
+      color: #FFB800;
       margin-bottom: 4px;
+      text-shadow: 0 2px 8px rgba(255,184,0,0.3);
     }
 
     .stat-card .label {
       font-size: 12px;
-      color: #6B7280;
+      color: rgba(255,255,255,0.6);
       line-height: 1.4;
     }
 
@@ -200,9 +231,10 @@
       align-items: flex-start;
       gap: 10px;
       padding: 10px 0;
-      border-bottom: 1px solid #F0F0F0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       font-size: 14px;
       line-height: 1.6;
+      color: rgba(255,255,255,0.82);
     }
 
     .service-list li:last-child {
@@ -235,8 +267,8 @@
     .step-num {
       width: 32px;
       height: 32px;
-      background: var(--主色-深蓝);
-      color: white;
+      background: linear-gradient(135deg, #FFB800, #FFA500);
+      color: #1A1A1A;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -244,11 +276,12 @@
       font-size: 14px;
       font-weight: bold;
       flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(255,184,0,0.4);
     }
 
     .step-text {
       font-size: 14px;
-      color: var(--文字-深灰);
+      color: rgba(255,255,255,0.82);
       line-height: 1.6;
       padding-top: 5px;
     }
@@ -262,36 +295,46 @@
     }
 
     .advantage-item {
-      background: var(--浅紫背景);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
       border-radius: 12px;
       padding: 16px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
+    /* 优势图标：金色线性图标 + 金色光晕圆角底 */
     .advantage-item .icon {
-      font-size: 28px;
+      width: 40px;
+      height: 40px;
+      padding: 9px;
+      box-sizing: border-box;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(255,184,0,0.22), rgba(255,184,0,0.05));
+      border: 1px solid rgba(255,184,0,0.3);
+      color: #FFB800;
+      box-shadow: 0 0 14px rgba(255,184,0,0.12);
       flex-shrink: 0;
     }
 
     .advantage-item .text h4 {
       font-size: 14px;
       font-weight: bold;
-      color: var(--主色-深蓝);
+      color: #FFFFFF;
       margin-bottom: 4px;
     }
 
     .advantage-item .text p {
       font-size: 12px;
-      color: #6B7280;
+      color: rgba(255,255,255,0.65);
       line-height: 1.4;
       margin: 0;
     }
 
     /* FAQ */
     .faq-item {
-      border-bottom: 1px solid #F0F0F0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       padding: 16px 0;
     }
 
@@ -302,24 +345,26 @@
     .faq-item h4 {
       font-size: 14px;
       font-weight: bold;
-      color: var(--主色-深蓝);
+      color: #FFFFFF;
       margin-bottom: 6px;
     }
 
     .faq-item p {
       font-size: 13px;
-      color: #6B7280;
+      color: rgba(255,255,255,0.65);
       line-height: 1.6;
       margin: 0;
     }
 
     /* CTA */
     .cta-section {
-      background: linear-gradient(180deg, var(--主色-渐变中心), var(--主色-深蓝));
+      background: linear-gradient(180deg, #123A66 0%, #071F3B 100%);
+      border: 1px solid rgba(255,184,0,0.18);
       padding: 50px 20px;
       text-align: center;
       border-radius: 20px;
       margin: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
     }
 
     .cta-section h3 {
@@ -353,7 +398,7 @@
 
     /* 页脚 */
     .footer {
-      background: var(--主色-深蓝);
+      background: #050F24;
       padding: 30px 20px;
       text-align: center;
       color: rgba(255,255,255,0.5);
@@ -418,7 +463,7 @@
 
     <!-- 一、公司简介 -->
     <div class="section-block">
-      <h2><span class="icon">🏢</span> 公司简介</h2>
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg> 公司简介</h2>
       <p><strong>汇盈聚金（Huì Yíng Jù Jīn）</strong>是一家专注中俄贸易的企业，在中国和俄罗斯均设有办公场地。</p>
       <p><strong>发展历程：</strong>2025年正式运营，团队拥有10年家用纺织品行业经验，已从家纺拓展到全品类（纺织品、电子产品、设备等），可满足客户各类采购需求。</p>
       <p><strong>合规资质：</strong>与俄罗斯本土企业签约合作，提供完整资质信息和注册地址，支持卢布结算。</p>
@@ -426,7 +471,7 @@
 
     <!-- 二、核心经营数据 -->
     <div class="section-block">
-      <h2><span class="icon">📊</span> 核心经营数据</h2>
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg> 核心经营数据</h2>
       <div class="stats-grid">
         <div class="stat-card">
           <div class="number">6000万</div>
@@ -453,7 +498,7 @@
 
     <!-- 三、产品与服务 -->
     <div class="section-block">
-      <h2><span class="icon">🎯</span> 产品与服务</h2>
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> 产品与服务</h2>
       <ul class="service-list">
         <li>按需在中国寻找靠谱生产厂家并供货（支持全品类）</li>
         <li>对比不同供应商的价格和条件，帮客户拿到最优方案</li>
@@ -471,7 +516,7 @@
 
     <!-- 四、合作流程 -->
     <div class="section-block">
-      <h2><span class="icon">📋</span> 合作流程</h2>
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg> 合作流程</h2>
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
@@ -510,38 +555,38 @@
 
     <!-- 五、竞争优势 -->
     <div class="section-block">
-      <h2><span class="icon">💪</span> 为什么选择我们</h2>
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg> 为什么选择我们</h2>
       <div class="advantage-grid">
         <div class="advantage-item">
-          <span class="icon">🏆</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
           <div class="text">
             <h4>10年行业深耕</h4>
             <p>深耕家纺行业十年，具备成熟行业经验积累</p>
           </div>
         </div>
         <div class="advantage-item">
-          <span class="icon">🌏</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
           <div class="text">
             <h4>中国本地团队</h4>
             <p>精通语言，熟悉国内市场行情</p>
           </div>
         </div>
         <div class="advantage-item">
-          <span class="icon">🇷🇺</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg>
           <div class="text">
             <h4>俄罗斯办事处</h4>
             <p>沟通高效，问题处理快速</p>
           </div>
         </div>
         <div class="advantage-item">
-          <span class="icon">🏗️</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z"/><path d="M6 18h12"/><path d="M6 14h12"/><rect width="12" height="12" x="6" y="10"/></svg>
           <div class="text">
             <h4>自有基础设施</h4>
             <p>中俄两地：办公室、仓库、工厂、电商平台</p>
           </div>
         </div>
         <div class="advantage-item">
-          <span class="icon">🤝</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
           <div class="text">
             <h4>长期合作导向</h4>
             <p>重视客户业务成功，致力于稳定发展</p>
@@ -552,45 +597,45 @@
 
     <!-- 六、我们解决的问题 -->
     <div class="section-block">
-      <h2><span class="icon">💡</span> 我们能解决哪些问题</h2>
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg> 我们能解决哪些问题</h2>
       <div class="advantage-grid">
         <div class="advantage-item">
-          <span class="icon">❓</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           <div class="text">
             <h4>担心选错工厂</h4>
             <p>实地考察供应商，透明展示真实情况</p>
           </div>
         </div>
         <div class="advantage-item">
-          <span class="icon">🗣️</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
           <div class="text">
             <h4>不会与中方沟通</h4>
             <p>负责谈判，争取最优条件</p>
           </div>
         </div>
         <div class="advantage-item">
-          <span class="icon">📄</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
           <div class="text">
             <h4>文件认证不熟悉</h4>
             <p>协助处理合同、规格和清关文件</p>
           </div>
         </div>
         <div class="advantage-item">
-          <span class="icon">🚢</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 10.189V14"/><path d="M12 2v3"/><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/><path d="M19.38 20A11.6 11.6 0 0 1 21 18l-8.231-4.083a2 2 0 0 0-1.538 0L3 18"/><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>
           <div class="text">
             <h4>国际运输复杂</h4>
             <p>全程负责从工厂到仓库的整个供应链</p>
           </div>
         </div>
         <div class="advantage-item">
-          <span class="icon">💰</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
           <div class="text">
             <h4>不想用人民币付款</h4>
             <p>与俄罗斯法人签约，卢布结算</p>
           </div>
         </div>
         <div class="advantage-item">
-          <span class="icon">📦</span>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/></svg>
           <div class="text">
             <h4>没有仓储空间</h4>
             <p>可使用我们的仓库寄存</p>
@@ -601,7 +646,7 @@
 
     <!-- 七、常见问题 -->
     <div class="section-block">
-      <h2><span class="icon">❓</span> 常见问题</h2>
+      <h2><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> 常见问题</h2>
       <div class="faq-item">
         <h4>最低起订量是多少？</h4>
         <p>具体起订量根据产品类型和供应商要求而定，请联系我们获取详细信息。</p>
@@ -631,7 +676,8 @@
     <h3>准备好开始合作了吗？</h3>
     <p>联系我们，沟通采购需求，匹配商品与工厂，获取报价</p>
     <a href="index.html#contact" class="btn-primary">
-      📞 立即联系
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      立即联系
     </a>
   </div>
 
