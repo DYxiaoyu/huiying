@@ -131,16 +131,7 @@
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255,184,0,0.12), transparent 70%);
-      border-radius: 50%;
-    }
+
 
     .hero-eyebrow {
       display: inline-flex;
@@ -608,54 +599,10 @@
       flex-shrink: 0;
     }
 
-    /* ===== 背景可读性优化 ===== */
-.hero {
-  position: relative;
-}
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right,
-    rgba(6,18,48,0.9) 0%,
-    rgba(6,18,48,0.6) 45%,
-    rgba(6,18,48,0) 75%);
-  pointer-events: none;
-  z-index: 1;
-}
+    /* 背景可读性优化 - 已精简，保留文字层级 */
 .hero > * {
   position: relative;
   z-index: 2;
-}
-.hero .stat-card, .hero .card {
-  background: rgba(8, 22, 55, 0.6) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 215, 0, 0.25);
-}
-
-/* ===== 遮盖首页背景图(bg-hero.png)左侧的黑色圆渐变圈 ===== */
-.hero::after,
-.contact-section::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 48%;
-  height: 85%;
-  background: radial-gradient(circle at 0% 50%,
-    rgba(7, 11, 48, 1) 0%,
-    rgba(7, 11, 48, 0.95) 28%,
-    rgba(7, 11, 48, 0.8) 48%,
-    rgba(7, 11, 48, 0) 72%);
-  pointer-events: none;
-}
-.hero::after {
-  z-index: 1;
-}
-.contact-section::after {
-  z-index: 0;
 }
 .contact-section > * {
   position: relative;
