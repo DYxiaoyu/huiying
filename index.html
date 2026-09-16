@@ -2,878 +2,798 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>汇盈聚金 - 专注中俄贸易 · 连接优质供应链</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>汇盈聚金 - 中俄跨境供应链服务商</title>
   <style>
-    /* ============================================
-       📌 样式说明：
-       所有颜色都集中在根变量区，
-       修改一处全局生效，方便小白定制。
-    ============================================ */
-
-      :root {
-      --主色-深蓝: #1A237E;
-      --主色-蓝: #3B4DC8;
-      --主色-渐变中心: #4A5BD8;
-      --强调色-金黄: #FFB800;
-      --强调色-按钮: #FFA500;
-      --文字-白色: #FFFFFF;
-      --文字-灰色: rgba(255,255,255,0.7);
-      --卡片-白色: #FFFFFF;
-      --卡片-渐变背景: #F0F4FF;
-      --浅紫背景: #EEF0FF;
-      --绿色对勾: #3B82F6;
+    :root {
+      --ink: #081426;
+      --navy: #071f3b;
+      --navy-2: #0b315c;
+      --blue: #14508f;
+      --gold: #d7a84f;
+      --gold-2: #f2c76d;
+      --paper: #f6f8fb;
+      --line: #dfe6ef;
+      --muted: #66758a;
+      --white: #ffffff;
+      --shadow: 0 24px 70px rgba(6, 24, 45, 0.12);
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-      background: #070b30;
-      color: var(--文字-白色);
-      overflow-x: hidden;
+      min-width: 320px;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    .hero,
-    .contact-section {
-      background-image: url('bg-hero.png');
-      background-size: cover;
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      /* 去掉固定视口背景，让背景跟随内容滚动，便于上方遮盖层始终盖住黑色圆渐变圈 */
-      /* background-attachment: fixed; */
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    section, footer {
-      position: relative;
-      z-index: 1;
-    }
-
-    .navbar {
+    .site-header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
-      background: #071F3B; /* 与首页背景(bg-hero.png)一致的深蓝 */
-      padding: 12px 20px;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(5, 17, 32, 0.88);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      width: min(1180px, calc(100% - 40px));
+      height: 72px;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      gap: 28px;
     }
 
-    .nav-logo {
-      display: flex;
+    .brand {
+      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: 16px;
-      font-weight: bold;
+      gap: 12px;
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: 0;
+      white-space: nowrap;
     }
 
-    .nav-logo-icon {
-      width: 32px;
-      height: 32px;
-      background: transparent;
-      background-image: url('logo.png');
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      border-radius: 0;
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      background: url("logo.png") center / contain no-repeat;
+    }
+
+    .brand small {
       display: block;
-      flex-shrink: 0;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
     }
 
     .nav-links {
       display: flex;
-      gap: 4px;
+      align-items: center;
+      gap: 2px;
       list-style: none;
     }
 
-    .nav-links li a {
-      color: var(--文字-灰色);
-      text-decoration: none;
-      font-size: 13px;
-      padding: 6px 10px;
-      border-radius: 20px;
-      transition: all 0.3s;
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 4px;
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 14px;
+      transition: color 0.2s ease, background 0.2s ease;
       white-space: nowrap;
-      /* =========新增文字阴影========= */
-      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
     }
 
-    .nav-links li a.active {
-      background: rgba(255,255,255,0.15);
-      color: var(--文字-白色);
-      text-shadow: 0 1px 4px rgba(0,0,0,0.7);
-    }
-
-    .nav-links li a:hover {
-      background: rgba(255,255,255,0.1);
-      color: var(--文字-白色);
-      text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 80px 24px 60px;
+      min-height: 760px;
+      padding: 148px 0 72px;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(5, 15, 30, 0.96) 0%, rgba(7, 31, 59, 0.84) 38%, rgba(7, 31, 59, 0.22) 68%, rgba(7, 31, 59, 0.08) 100%),
+        linear-gradient(180deg, rgba(5, 15, 30, 0.15), rgba(5, 15, 30, 0.7)),
+        url("bg-hero.png") right bottom / cover no-repeat;
       position: relative;
       overflow: hidden;
     }
 
-
-
-    .hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 20px;
-      padding: 6px 16px;
-      font-size: 12px;
-      color: var(--文字-灰色);
-      margin-bottom: 20px;
-      /* 玻璃质感：磨砂模糊 + 顶部高光（轻透版） */
-      backdrop-filter: blur(8px) saturate(1.15);
-      -webkit-backdrop-filter: blur(8px) saturate(1.15);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 4px 18px rgba(0,0,0,0.15);
-      /* =========新增文字阴影========= */
-      text-shadow: 0 1px 3px rgba(0,0,0,0.55);
-    }
-
-    .hero-brand {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 18px;
-    }
-
-    .hero-logo {
-      width: 100px;
-      height: 100px;
-      background-image: url('logo.png');
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      flex-shrink: 0;
-      filter: drop-shadow(0 6px 32px rgba(255, 184, 0, 0.6))
-              drop-shadow(0 0 20px rgba(255, 255, 255, 0.4))
-              drop-shadow(0 0 40px rgba(255, 184, 0, 0.3));
-    }
-
-    .hero-title {
-      font-size: 72px;
-      font-weight: 900;
-      letter-spacing: 8px;
-      line-height: 1;
-      margin: 0;
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFE0A0 40%, #FFCC00 70%, #FFB800 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-      text-shadow: none;
-      -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
-    }
-
-    .hero-subtitle {
-      font-size: 22px;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 50px;
-      letter-spacing: 4px;
-      font-weight: 500;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 50px;
-      width: 100%;
-      max-width: 360px;
-    }
-
-    .stat-item {
-      flex: 1;
-      background: rgba(255,255,255,0.09);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 16px;
-      padding: 20px 8px 16px;
-      /* 玻璃质感：磨砂模糊 + 顶部高光 + 投影（轻透版） */
-      backdrop-filter: blur(10px) saturate(1.15);
-      -webkit-backdrop-filter: blur(10px) saturate(1.15);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 8px 26px rgba(0,0,0,0.2);
-    }
-
-    .stat-number {
-      font-size: 26px;
-      font-weight: 900;
-      color: var(--强调色-金黄);
-      margin-bottom: 4px;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-    }
-
-    .stat-label {
-      font-size: 14px;
-      color: var(--文字-灰色);
-      line-height: 1.4;
-      /* =========新增文字阴影========= */
-      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--强调色-金黄), var(--强调色-按钮));
-      color: #1A1A1A;
-      font-size: 15px;
-      font-weight: bold;
-      padding: 14px 36px;
-      border-radius: 50px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 24px rgba(255,168,0,0.4);
-      transition: transform 0.2s, box-shadow 0.2s;
-      margin-bottom: 40px;
-    }
-
-    .btn-primary:active {
-      transform: scale(0.96);
-    }
-
-    .btn-primary:hover {
-      transform: scale(1.03);
-      box-shadow: 0 6px 30px rgba(255,168,0,0.55);
-    }
-
-    .wave-divider {
+    .hero::after {
+      content: "";
       position: absolute;
-      bottom: 0;
       left: 0;
       right: 0;
-      line-height: 0;
+      bottom: 0;
+      height: 96px;
+      background: linear-gradient(180deg, rgba(246, 248, 251, 0), var(--paper));
+      pointer-events: none;
     }
 
-    .wave-divider svg {
-      width: 100%;
-      height: 50px;
-    }
-
-    .section {
-      background: var(--浅紫背景);
-      padding: 60px 20px;
-    }
-
-    .section-white {
-      background: var(--卡片-白色);
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 24px;
-      font-weight: 900;
-      color: var(--主色-深蓝);
-      margin-bottom: 8px;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      font-size: 13px;
-      color: #6B7280;
-      margin-bottom: 36px;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      max-width: 500px;
+    .container {
+      width: min(1180px, calc(100% - 40px));
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .feature-card {
-      background: var(--卡片-白色);
-      border-radius: 16px;
-      padding: 20px 14px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    .hero-content {
+      width: min(690px, 100%);
     }
 
-    .card-icon {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(145deg, #0D3057 0%, #071F3B 100%);
-      border-radius: 12px;
-      display: flex;
+    .eyebrow {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      color: #FFFFFF;
-      margin-bottom: 14px;
-      box-shadow: 0 6px 16px rgba(7, 31, 59, 0.32), inset 0 1px 0 rgba(255,255,255,0.14);
-    }
-
-    .card-title {
-      font-size: 13px;
-      font-weight: bold;
-      color: var(--主色-深蓝);
-      margin-bottom: 10px;
-    }
-
-    .card-list {
-      list-style: none;
-    }
-
-    .card-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-      font-size: 11px;
-      color: #374151;
-      margin-bottom: 6px;
-      line-height: 1.4;
-    }
-
-    .card-list li::before {
-      content: '✓';
-      color: var(--绿色对勾);
-      font-weight: bold;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-
-    .cooperation-section {
-      background: var(--浅紫背景);
-      padding: 60px 20px;
-    }
-
-    .coop-title {
-      text-align: center;
-      font-size: 26px;
-      font-weight: 900;
-      color: var(--主色-深蓝);
-      margin-bottom: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       gap: 10px;
-    }
-
-    .coop-layout {
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .supplier-card {
-      background: var(--卡片-白色);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-
-    .supplier-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 0;
-      border-bottom: 1px solid #F0F0F0;
-    }
-
-    .supplier-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .supplier-item:first-child {
-      padding-top: 0;
-    }
-
-    .supplier-icon {
-      width: 42px;
-      height: 42px;
-      background: linear-gradient(145deg, #0D3057 0%, #071F3B 100%);
-      border: none;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      color: #FFFFFF;
-      flex-shrink: 0;
-      box-shadow: 0 4px 12px rgba(7, 31, 59, 0.25), inset 0 1px 0 rgba(255,255,255,0.12);
-    }
-
-    .supplier-info h4 {
-      font-size: 13px;
-      color: var(--主色-深蓝);
-      font-weight: bold;
-      margin-bottom: 3px;
-    }
-
-    .supplier-info p {
-      font-size: 11px;
-      color: #6B7280;
-      line-height: 1.4;
-    }
-
-    .flow-card {
-      background: var(--卡片-白色);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-
-    .flow-card h3 {
+      margin-bottom: 26px;
+      color: var(--gold-2);
       font-size: 14px;
-      color: var(--主色-深蓝);
-      font-weight: bold;
-      margin-bottom: 16px;
+      font-weight: 700;
     }
 
-    .flow-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: var(--gold-2);
     }
 
-    .flow-step {
+    .hero h1 {
+      max-width: 680px;
+      font-size: 64px;
+      line-height: 1.08;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .hero h1 span {
+      color: var(--gold-2);
+    }
+
+    .hero-lead {
+      max-width: 620px;
+      margin-top: 24px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 19px;
+      line-height: 1.85;
+    }
+
+    .hero-actions {
       display: flex;
-      align-items: flex-start;
+      flex-wrap: wrap;
+      align-items: center;
       gap: 14px;
-      padding: 12px 0;
+      margin-top: 42px;
     }
 
-    .flow-step-num {
-      width: 28px;
-      height: 28px;
-      background: linear-gradient(145deg, #0D3057 0%, #071F3B 100%);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
+    .btn {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
-      font-weight: bold;
-      flex-shrink: 0;
-      box-shadow: 0 3px 8px rgba(7, 31, 59, 0.3);
-    }
-
-    .flow-step-text {
-      font-size: 12px;
-      color: #374151;
-      line-height: 1.5;
-      padding-top: 5px;
-    }
-
-    .btn-secondary {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      width: 100%;
-      max-width: 500px;
-      margin: 24px auto 0;
-      background: #071F3B;
-      color: white;
+      min-height: 48px;
+      padding: 0 24px;
+      border-radius: 4px;
       font-size: 15px;
-      font-weight: bold;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0 4px 14px rgba(7, 31, 59, 0.3);
-      transition: background 0.3s, transform 0.2s;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
-    .btn-secondary:hover {
-      background: #0D3057;
+    .btn:hover {
       transform: translateY(-1px);
     }
 
-    .btn-secondary:active {
-      background: #051527;
-      transform: translateY(0);
+    .btn-primary {
+      background: var(--gold);
+      color: #121821;
+      box-shadow: 0 16px 38px rgba(215, 168, 79, 0.24);
     }
 
-    .contact-section {
-      padding: 60px 20px;
-      text-align: center;
-      color: white;
+    .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.06);
     }
 
-    .contact-section .section-title {
-      color: white;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    .hero-proof {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      width: min(760px, 100%);
+      margin-top: 74px;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.16);
     }
 
-    .contact-cards {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      max-width: 360px;
-      margin: 0 auto 30px;
+    .proof-item {
+      padding: 24px;
+      background: rgba(6, 22, 42, 0.62);
     }
 
-    .contact-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 14px;
-      padding: 18px;
-      text-align: left;
+    .proof-number {
+      display: block;
+      color: var(--gold-2);
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 800;
     }
 
-    .contact-card-label {
-      font-size: 11px;
-      color: var(--强调色-金黄);
-      font-weight: bold;
-      margin-bottom: 4px;
+    .proof-label {
+      display: block;
+      margin-top: 10px;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 13px;
+    }
+
+    .section {
+      padding: 96px 0;
+      background: var(--paper);
+    }
+
+    .section-white {
+      background: var(--white);
+    }
+
+    .section-dark {
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(7, 31, 59, 0.98), rgba(8, 20, 38, 0.98)),
+        url("bg-hero.png") center bottom / cover no-repeat;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 0.65fr);
+      align-items: end;
+      gap: 48px;
+      margin-bottom: 44px;
+    }
+
+    .section-kicker {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1px;
+    }
+
+    .section-title {
+      margin-top: 10px;
+      color: var(--ink);
+      font-size: 42px;
+      line-height: 1.18;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .section-dark .section-title,
+    .section-dark .section-copy {
+      color: var(--white);
+    }
+
+    .section-copy {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .capability-card {
+      min-height: 260px;
+      padding: 32px 28px;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .capability-icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 32px;
+      color: var(--gold);
+    }
+
+    .capability-icon svg,
+    .icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .capability-card h3 {
+      color: var(--ink);
+      font-size: 19px;
+      margin-bottom: 14px;
+    }
+
+    .capability-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    .process-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1fr);
+      gap: 56px;
+      align-items: start;
+    }
+
+    .supplier-panel {
+      padding: 34px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+    }
+
+    .supplier-panel h3 {
+      color: var(--gold-2);
+      font-size: 22px;
+      margin-bottom: 22px;
+    }
+
+    .supplier-row {
+      padding: 20px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .supplier-row strong {
+      display: block;
+      color: var(--white);
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .supplier-row span {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .process-list {
+      display: grid;
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      min-height: 104px;
+      background: rgba(5, 17, 32, 0.62);
+    }
+
+    .process-num {
       display: flex;
       align-items: center;
-      gap: 6px;
-      /* =========新增文字阴影========= */
-      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+      justify-content: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.13);
+      color: var(--gold-2);
+      font-size: 22px;
+      font-weight: 800;
     }
 
-    .contact-card-value {
-      font-size: 15px;
-      color: white;
-      font-weight: 500;
-      /* =========新增文字阴影========= */
-      text-shadow: 0 1px 4px rgba(0,0,0,0.75);
+    .process-text {
+      padding: 24px 28px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 16px;
+    }
+
+    .contact-band {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 46px;
+      align-items: stretch;
+      padding: 54px;
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-band h2 {
+      font-size: 38px;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .contact-band p {
+      max-width: 640px;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .contact-item {
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .contact-label {
+      display: block;
+      color: var(--gold-2);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .contact-value {
+      display: block;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 14px;
+      line-height: 1.65;
+      word-break: break-word;
     }
 
     .footer {
-      background: #0d1450;
-      padding: 20px;
-      text-align: center;
-      font-size: 11px;
-      color: rgba(255,255,255,0.4);
-      /* =========新增文字阴影========= */
-      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      padding: 28px 0;
+      background: #050d18;
+      color: rgba(255, 255, 255, 0.52);
+      font-size: 13px;
     }
 
-    @media (max-width: 400px) {
-      .hero-logo {
-        width: 60px;
-        height: 60px;
+    .footer-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        width: min(100% - 28px, 1180px);
+        height: auto;
+        padding: 12px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
       }
-      .hero-title {
+
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 3px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 154px 0 56px;
+        background:
+          linear-gradient(180deg, rgba(5, 15, 30, 0.96) 0%, rgba(7, 31, 59, 0.82) 56%, rgba(7, 31, 59, 0.6) 100%),
+          url("bg-hero.png") 64% bottom / cover no-repeat;
+      }
+
+      .container {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .hero-lead {
+        font-size: 16px;
+      }
+
+      .hero-proof,
+      .capability-grid,
+      .section-head,
+      .process-layout,
+      .contact-band {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-proof {
+        margin-top: 46px;
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+
+      .section-title {
+        font-size: 32px;
+      }
+
+      .capability-card {
+        min-height: auto;
+      }
+
+      .contact-band {
+        padding: 34px 24px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .brand strong {
+        font-size: 15px;
+      }
+
+      .brand small {
+        display: none;
+      }
+
+      .nav-links a {
+        padding: 0 10px;
+        font-size: 13px;
+      }
+
+      .hero h1 {
         font-size: 36px;
-        letter-spacing: 3px;
       }
-      .hero-brand {
-        gap: 10px;
+
+      .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
       }
-      .nav-links li a {
-        font-size: 11px;
-        padding: 5px 7px;
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-proof {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-item {
+        padding: 20px;
+      }
+
+      .process-step {
+        grid-template-columns: 58px 1fr;
+      }
+
+      .process-text {
+        padding: 18px;
+        font-size: 14px;
+      }
+
+      .contact-band h2 {
+        font-size: 30px;
       }
     }
-
-    /* ============================================
-       ✨ 商务线性图标（SVG）通用样式
-       图标大小自动跟随所在位置的文字大小
-    ============================================ */
-    .icon {
-      width: 1em;
-      height: 1em;
-      flex-shrink: 0;
-    }
-
-    /* 背景可读性优化 - 已精简，保留文字层级 */
-.hero > * {
-  position: relative;
-  z-index: 2;
-}
-.contact-section > * {
-  position: relative;
-  z-index: 1;
-}
   </style>
 </head>
 <body>
+  <header class="site-header">
+    <nav class="nav" aria-label="主导航">
+      <a class="brand" href="#hero">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>
+          <strong>汇盈聚金</strong>
+          <small>Huiying Jijin Global Trade</small>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li><a class="active" href="#hero">首页</a></li>
+        <li><a href="about.html">关于我们</a></li>
+        <li><a href="#capability">服务能力</a></li>
+        <li><a href="#cooperation">合作流程</a></li>
+        <li><a href="#contact">联系我们</a></li>
+      </ul>
+    </nav>
+  </header>
 
-
-  <!-- 🧭 导航栏 -->
-  <nav class="navbar">
-    <div class="nav-logo">
-      <div class="nav-logo-icon"></div>
-      <span></span>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#hero" class="active">首页</a></li>
-      <li><a href="about.html">关于我们</a></li>
-      <li><a href="#infra">基础设施</a></li>
-      <li><a href="#coop">合作邀请</a></li>
-      <li><a href="#contact">联系我们</a></li>
-    </ul>
-  </nav>
-
-  <section class="hero" id="hero">
-    <div class="hero-eyebrow">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-      专注中俄贸易 · 连接优质供应链
-    </div>
-
-    <!-- ✏️ 修改：品牌名称（logo + 大标题） -->
-    <div class="hero-brand">
-      <div class="hero-logo" aria-label="汇盈聚金 logo"></div>
-      <h1 class="hero-title">汇盈聚金</h1>
-    </div>
-
-    <!-- ✏️ 修改：副标题 -->
-    <p class="hero-subtitle">中国·俄罗斯双基地 为您打通外贸跨境全链路</p>
-
-    <!-- ✏️ 修改：三个数据（数字 + 说明文字）-->
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-number">10+</div>
-        <div class="stat-label">年对俄<br>贸易经验</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">3000m²</div>
-        <div class="stat-label">俄罗斯<br>自有仓库</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">200+</div>
-        <div class="stat-label">运营专家<br>团队</div>
-      </div>
-    </div>
-
-    <!-- ✏️ 修改：按钮文字和链接 -->
-    <a href="#coop" class="btn-primary">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
-      立即合作
-    </a>
-
-    <!-- 装饰波浪 -->
-    <div class="wave-divider">
-      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 60L60 50C120 40 240 20 360 15C480 10 600 20 720 28C840 36 960 42 1080 42C1200 42 1320 36 1380 33L1440 30V60H0Z" fill=""/>
-      </svg>
-    </div>
-  </section>
-
-  <section class="section" id="infra">
-    <h2 class="section-title">基础设施</h2>
-    <p class="section-subtitle">平台资源 · 仓储物流 · 运营团队 · 推广资源</p>
-
-    <div class="card-grid">
-      <!-- 卡片1 -->
-      <div class="feature-card">
-        <div class="card-icon">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v6a5 5 0 0 1-10 0V4z"/><path d="M7 6H4a2 2 0 0 0 2 5h1"/><path d="M17 6h3a2 2 0 0 1-2 5h-1"/></svg>
-        </div>
-        <div class="card-title">平台资源</div>
-        <ul class="card-list">
-          <!-- ✏️ 修改：平台认证列表 -->
-          <li>Ozon官方卖家（B2B合作伙伴）</li>
-          <li>Ozon理事会成员</li>
-          <li>Wildberries认证商家</li>
-        </ul>
-      </div>
-
-      <!-- 卡片2 -->
-      <div class="feature-card">
-        <div class="card-icon">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-8h6v8"/></svg>
-        </div>
-        <div class="card-title">仓储物流</div>
-        <ul class="card-list">
-          <!-- ✏️ 修改：仓储物流列表 -->
-          <li>俄罗斯自有仓库3000㎡</li>
-          <li>完善的仓储管理体系</li>
-          <li>高效的物流配送网络</li>
-        </ul>
-      </div>
-
-      <!-- 卡片3 -->
-      <div class="feature-card">
-        <div class="card-icon">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="card-title">运营团队</div>
-        <ul class="card-list">
-          <!-- ✏️ 修改：运营团队列表 -->
-          <li>俄罗斯市场运营团队200+专家</li>
-          <li>青岛运营支持团队</li>
-          <li>中俄团队紧密整合</li>
-        </ul>
-      </div>
-
-      <!-- 卡片4 -->
-      <div class="feature-card">
-        <div class="card-icon">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
-        </div>
-        <div class="card-title">推广资源</div>
-        <ul class="card-list">
-          <!-- ✏️ 修改：推广资源列表 -->
-          <li>白俄罗斯合作伙伴</li>
-          <li>100+博主网络</li>
-          <li>专注TikTok直播和推广</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="cooperation-section" id="coop">
-    <div class="coop-title">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
-      合作邀请
-    </div>
-
-    <div class="coop-layout">
-      <!-- 供应商类型 -->
-      <div class="supplier-card">
-        <h3 style="font-size:14px;color:var(--主色-深蓝);font-weight:bold;margin-bottom:14px;">
-          我们寻找这样的供应商
-        </h3>
-
-        <!-- ✏️ 修改：供应商类型（图标、标题、说明）-->
-        <div class="supplier-item">
-          <div class="supplier-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9l4-6z"/><path d="M2 9h20"/><path d="M12 21 8 9l4-6 4 6-4 12"/></svg>
-          </div>
-          <div class="supplier-info">
-            <h4>独特产品</h4>
-            <p>拥有独特或非标准产品，在市场上具有差异化优势</p>
+  <main>
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">中俄跨境贸易与供应链服务</div>
+          <h1>连接中国制造与俄罗斯市场的<span>长期合作伙伴</span></h1>
+          <p class="hero-lead">汇盈聚金以中国本地采购能力、俄罗斯本土运营网络和跨境履约经验，为客户提供从供应商筛选、商务谈判、验厂验货、文件认证到物流清关的一体化服务。</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">预约沟通</a>
+            <a class="btn btn-secondary" href="about.html">查看公司能力</a>
           </div>
         </div>
 
-        <div class="supplier-item">
-          <div class="supplier-icon">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>
+        <div class="hero-proof" aria-label="核心能力数据">
+          <div class="proof-item">
+            <span class="proof-number">10+</span>
+            <span class="proof-label">年家纺及跨境贸易经验</span>
           </div>
-          <div class="supplier-info">
-            <h4>生产故事</h4>
-            <p>有趣的 production 过程或企业历史，适合媒体内容制作</p>
+          <div class="proof-item">
+            <span class="proof-number">13000m²</span>
+            <span class="proof-label">俄罗斯自有仓储空间</span>
           </div>
-        </div>
-      </div>
-
-      <!-- 合作流程 -->
-      <div class="flow-card">
-        <h3>合作流程</h3>
-        <div class="flow-steps">
-          <!-- ✏️ 修改：流程步骤文字 -->
-          <div class="flow-step">
-            <div class="flow-step-num">1</div>
-            <div class="flow-step-text">提交产品目录和公司介绍</div>
-          </div>
-          <div class="flow-step">
-            <div class="flow-step-num">2</div>
-            <div class="flow-step-text">提供生产照片或视频</div>
-          </div>
-          <div class="flow-step">
-            <div class="flow-step-num">3</div>
-            <div class="flow-step-text">评估洽谈长期合作</div>
+          <div class="proof-item">
+            <span class="proof-number">200+</span>
+            <span class="proof-label">俄罗斯市场运营团队</span>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- ✏️ 修改：提交按钮文字和链接 -->
-    <a href="mailto:your@email.com" class="btn-secondary">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
-      提交合作意向
-    </a>
-  </section>
-
-  <section class="contact-section" id="contact">
-    <h2 class="section-title" style="margin-bottom:30px;">联系我们</h2>
-
-    <div class="contact-cards">
-      <!-- ✏️ 修改：联系方式 -->
-      <div class="contact-card">
-        <div class="contact-card-label">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          电话
+    <section class="section section-white" id="capability">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Infrastructure</div>
+            <h2 class="section-title">以本地化资源，承接跨境贸易的复杂环节</h2>
+          </div>
+          <p class="section-copy">我们不只提供信息撮合，而是参与采购、生产、质检、文件、仓储与配送等关键节点，帮助客户降低跨境沟通成本和履约风险。</p>
         </div>
-        <div class="contact-card-value">+86 15250694693</div>
-      </div>
 
-      <div class="contact-card">
-        <div class="contact-card-label">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
-          邮箱
+        <div class="capability-grid">
+          <article class="capability-card">
+            <div class="capability-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-8h6v8"/><path d="M3 8h18"/></svg>
+            </div>
+            <h3>双地团队</h3>
+            <p>中国团队负责供应商筛选、验厂验货与生产跟进，俄罗斯团队负责本地沟通、仓储与市场协同。</p>
+          </article>
+          <article class="capability-card">
+            <div class="capability-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"/><path d="M4 15h16"/><path d="M6 15V5h12v10"/><path d="M8 9h8"/><path d="M8 12h8"/></svg>
+            </div>
+            <h3>仓储履约</h3>
+            <p>俄罗斯自有仓库支持货物存放、订单调拨与本地配送，提升跨境链路的确定性。</p>
+          </article>
+          <article class="capability-card">
+            <div class="capability-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 17h14"/><path d="M7 7c0 4 10 4 10 0"/><path d="M7 17c0-4 10-4 10 0"/></svg>
+            </div>
+            <h3>合规结算</h3>
+            <p>与俄罗斯本土企业签约合作，支持卢布结算，并协助合同、规格证书、海关等文件处理。</p>
+          </article>
+          <article class="capability-card">
+            <div class="capability-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 7 8 20l-5-5"/><path d="M16 7h5v5"/></svg>
+            </div>
+            <h3>平台与推广</h3>
+            <p>具备 Ozon、Wildberries 等平台运营经验，并拥有白俄罗斯合作伙伴及内容推广资源。</p>
+          </article>
         </div>
-        <div class="contact-card-value">zhanglu@hyjjglobal.com</div>
       </div>
+    </section>
 
-      <div class="contact-card">
-        <div class="contact-card-label">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          地址
+    <section class="section section-dark" id="cooperation">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-kicker">Cooperation</div>
+            <h2 class="section-title">寻找能在俄罗斯市场长期增长的优质供应商</h2>
+          </div>
+          <p class="section-copy">我们关注有稳定生产能力、清晰产品优势和内容传播空间的合作伙伴。合作不止于一次交易，更重视可持续的产品供给和市场反馈。</p>
         </div>
-        <div class="contact-card-value">江苏省南通市崇川区文峰街道崇川路88号国际贸易中心3606</div>
+
+        <div class="process-layout">
+          <aside class="supplier-panel">
+            <h3>合作对象</h3>
+            <div class="supplier-row">
+              <strong>独特产品或非标准品</strong>
+              <span>产品在功能、设计、工艺或供应链上具有差异化，适合进入俄罗斯市场。</span>
+            </div>
+            <div class="supplier-row">
+              <strong>具备生产故事的工厂</strong>
+              <span>企业历史、生产过程、技术实力或品牌故事适合用于客户沟通和内容推广。</span>
+            </div>
+            <div class="supplier-row">
+              <strong>重视长期合作</strong>
+              <span>愿意配合样品、资料、质检、交付和持续优化，建立稳定供给关系。</span>
+            </div>
+          </aside>
+
+          <div class="process-list">
+            <div class="process-step">
+              <div class="process-num">01</div>
+              <div class="process-text">提交产品目录、公司介绍与基础资质信息</div>
+            </div>
+            <div class="process-step">
+              <div class="process-num">02</div>
+              <div class="process-text">提供生产照片、视频或样品资料，完成初步市场评估</div>
+            </div>
+            <div class="process-step">
+              <div class="process-num">03</div>
+              <div class="process-text">沟通价格、交期、认证、结算和物流方案</div>
+            </div>
+            <div class="process-step">
+              <div class="process-num">04</div>
+              <div class="process-text">确定合作路径，推进样品、订单与长期供货计划</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <a href="#hero" class="btn-primary" style="margin-top:10px;">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
-      回到顶部
-    </a>
-  </section>
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-band">
+          <div>
+            <div class="section-kicker">Contact</div>
+            <h2>把需求交给我们，从供应链开始推进下一步。</h2>
+            <p>无论您是俄罗斯采购方、中国供应商，还是希望进入俄罗斯市场的品牌方，都可以先与我们沟通产品方向、订单规模和合作模式。</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="mailto:zhanglu@hyjjglobal.com">发送邮件</a>
+              <a class="btn btn-secondary" href="tel:+8615250694693">电话联系</a>
+            </div>
+          </div>
 
-  <!-- 底部 -->
+          <div class="contact-list">
+            <div class="contact-item">
+              <span class="contact-label">电话</span>
+              <span class="contact-value">+86 15250694693</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">邮箱</span>
+              <span class="contact-value">zhanglu@hyjjglobal.com</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">地址</span>
+              <span class="contact-value">江苏省南通市崇川区文峰街道崇川路88号国际贸易中心3606</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer class="footer">
-    <p>© 2024 汇盈聚金 Huiying Jijin. All rights reserved.</p>
+    <div class="footer-inner">
+      <span>© 2026 汇盈聚金 Huiying Jijin. All rights reserved.</span>
+      <span>China · Russia Cross-border Trade Services</span>
+    </div>
   </footer>
 
   <script>
-    // 点击导航链接时平滑滚动
-    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-links a[href^='#']");
 
-    // 滚动时自动高亮当前导航项
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links li a');
-
-    window.addEventListener('scroll', function() {
-      let current = '';
-      sections.forEach(function(section) {
-        const sectionTop = section.offsetTop - 80;
-        if (window.scrollY >= sectionTop) {
-          current = section.getAttribute('id');
+    window.addEventListener("scroll", function () {
+      let current = "hero";
+      sections.forEach(function (section) {
+        if (window.scrollY >= section.offsetTop - 120) {
+          current = section.id;
         }
       });
 
-      navLinks.forEach(function(link) {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-          link.classList.add('active');
-        }
+      navLinks.forEach(function (link) {
+        link.classList.toggle("active", link.getAttribute("href") === "#" + current);
       });
     });
   </script>
-
-
 </body>
 </html>
